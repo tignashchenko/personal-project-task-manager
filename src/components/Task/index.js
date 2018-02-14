@@ -10,6 +10,12 @@ import Edit from 'theme/assets/Edit';
 import Star from 'theme/assets/Star';
 
 export default class Task extends Component {
+    deleteTodo = () => {
+        const { deleteTodo, id } = this.props;
+
+        deleteTodo(id);
+    };
+
     toggleComplete = () => {
         const { complete, id } = this.props;
 
@@ -47,8 +53,15 @@ export default class Task extends Component {
                         color2 = '#000'
                         onClick = { this.togglePriority }
                     />
-                    <Edit color1 = '#3B8EF3' color2 = '#000' />
-                    <Delete color1 = '#3B8EF3' color2 = '#000' />
+                    <Edit
+                        color1 = '#3B8EF3'
+                        color2 = '#000'
+                    />
+                    <Delete
+                        color1 = '#3B8EF3'
+                        color2 = '#000'
+                        onClick = { this.deleteTodo }
+                    />
                 </div>
             </li>
         );

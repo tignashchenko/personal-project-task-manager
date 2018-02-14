@@ -20,6 +20,7 @@ class Scheduler extends Component {
                 changePriority = { actions.toggleTodoPriority }
                 complete = { actions.toggleCompleteTodo }
                 completed = { completed }
+                deleteTodo = { actions.deleteTodo }
                 id = { id }
                 important = { important }
                 key = { id }
