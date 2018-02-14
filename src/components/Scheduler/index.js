@@ -1,52 +1,19 @@
 // Core
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
 // Instruments
 import Styles from './styles';
-import initialState from './todos';
 import Checkbox from 'theme/assets/Checkbox';
+import todoActions from 'actions/todos';
 
 // Components
 import Task from 'components/Task';
 
-export default class Scheduler extends Component {
-    state = initialState;
-
-    handleSubmit = (event) => event.preventDefault();
-
-    complete = (id) =>
-        this.setState(({ todos }) => ({
-            todos: todos.map((todo) => {
-                if (todo.id === id) {
-                    todo.completed = !todo.completed;
-                }
-
-                return todo;
-            }),
-        }));
-
-    changePriority = (id) =>
-        this.setState(({ todos }) => ({
-            todos: todos.map((todo) => {
-                if (todo.id === id) {
-                    todo.important = !todo.important;
-                }
-
-                return todo;
-            }),
-        }));
-
-    completeAll = () =>
-        this.setState(({ todos }) => ({
-            todso: todos.map((todo) => {
-                todo.completed = true;
-
-                return todo;
-            }),
-        }));
-
+class Scheduler extends Component {
     render () {
-        const { todos } = this.state;
+        const { todos } = this.props;
         const allCompleted = todos.every((todo) => todo.completed);
         const todoList = todos.map(({ id, message, completed, important }) => (
             <Task
@@ -88,3 +55,13 @@ export default class Scheduler extends Component {
         );
     }
 }
+
+const mapStateToProps = ({ todos }) => ({
+    todos,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+    actions: bindActionCreators({ ...todoActions }, dispatch),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Scheduler);
