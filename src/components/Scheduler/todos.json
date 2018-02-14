@@ -2,9 +2,9 @@
     "todos": [
         {
             "id": "xjh",
-            "message": "Успешно пройти React-интенсив компании Lectrum",
-            "completed": true,
-            "important": true
+            "message": "Успешно пройти Redux-интенсив компании Lectrum",
+            "completed": false,
+            "important": false
         },
         {
             "id": "xjr",

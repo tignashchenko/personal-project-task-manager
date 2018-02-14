@@ -7,6 +7,10 @@ export default Object.freeze({
         payload: id,
     }),
 
+    toggleCompleteAllTodos: () => ({
+        type: types.TOGGLE_COMPLETE_ALL_TODOS,
+    }),
+
     toggleCompleteTodo: (id) => ({
         type:    types.TOGGLE_COMPLETE_TODO,
         payload: id,

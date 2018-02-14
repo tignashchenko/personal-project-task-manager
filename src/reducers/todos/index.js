@@ -7,6 +7,9 @@ export default (state = todos, { payload, type }) => {
         case types.DELETE_TODO:
             return state.filter((todo) => todo.id !== payload);
 
+        case types.TOGGLE_COMPLETE_ALL_TODOS:
+            return state.map((todo) => ({ ...todo, completed: !todo.completed }));
+
         case types.TOGGLE_COMPLETE_TODO:
             return state.map((todo) => todo.id === payload ? { ...todo, completed: !todo.completed } : todo);
 

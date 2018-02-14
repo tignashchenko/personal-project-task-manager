@@ -14,7 +14,7 @@ import Task from 'components/Task';
 class Scheduler extends Component {
     render () {
         const { actions, todos } = this.props;
-
+        const allCompleted = todos.every((todo) => todo.completed);
         const todoList = todos.map(({ id, message, completed, important }) => (
             <Task
                 changePriority = { actions.toggleTodoPriority }
@@ -44,10 +44,10 @@ class Scheduler extends Component {
                     </section>
                     <footer>
                         <Checkbox
-                            checked = { null }
+                            checked = { allCompleted }
                             color1 = '#363636'
                             color2 = '#fff'
-                            onClick = { null }
+                            onClick = { actions.toggleCompleteAllTodos }
                         />
                         <code>Все задачи выполнены</code>
                     </footer>
