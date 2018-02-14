@@ -13,8 +13,13 @@ export default (state = todos, { payload, type }) => {
         case types.TOGGLE_COMPLETE_TODO:
             return state.map((todo) => todo.id === payload ? { ...todo, completed: !todo.completed } : todo);
 
-        case types.TOGGLE_TODO_PRIORITY:
-            return state.map((todo) => todo.id === payload ? { ...todo, important: !todo.important } : todo);
+        case types.TOGGLE_TODO_PRIORITY: {
+            const modifiedPriorityTodos = state.map((todo) => todo.id === payload ? { ...todo, important: !todo.important } : todo);
+            const priorityTodos = modifiedPriorityTodos.filter((todo) => todo.important);
+            const nonPriorityTodos = modifiedPriorityTodos.filter((todo) => !todo.important);
+
+            return [...priorityTodos.reverse(), ...nonPriorityTodos];
+        }
 
         default:
             return state;
