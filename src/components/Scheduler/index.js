@@ -13,12 +13,12 @@ import Task from 'components/Task';
 
 class Scheduler extends Component {
     render () {
-        const { todos } = this.props;
-        const allCompleted = todos.every((todo) => todo.completed);
+        const { actions, todos } = this.props;
+
         const todoList = todos.map(({ id, message, completed, important }) => (
             <Task
-                changePriority = { this.changePriority }
-                complete = { this.complete }
+                changePriority = { null }
+                complete = { actions.toggleCompleteTodo }
                 completed = { completed }
                 id = { id }
                 important = { important }
@@ -43,10 +43,10 @@ class Scheduler extends Component {
                     </section>
                     <footer>
                         <Checkbox
-                            checked = { allCompleted }
+                            checked = { null }
                             color1 = '#363636'
                             color2 = '#fff'
-                            onClick = { this.completeAll }
+                            onClick = { null }
                         />
                         <code>Все задачи выполнены</code>
                     </footer>

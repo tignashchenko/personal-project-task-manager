@@ -2,7 +2,7 @@
 import { compose, createStore } from 'redux';
 
 // Instruments
-import reducer from 'reducers/todos/index';
+import reducer from 'reducers';
 
 const dev = process.env.NODE_ENV === 'development'; // eslint-disable-line
 const devtools = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__;

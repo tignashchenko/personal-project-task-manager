@@ -10,16 +10,10 @@ import Edit from 'theme/assets/Edit';
 import Star from 'theme/assets/Star';
 
 export default class Task extends Component {
-    complete = () => {
-        const { id, complete } = this.props;
+    toggleComplete = () => {
+        const { complete, id } = this.props;
 
         complete(id);
-    };
-
-    changePriority = () => {
-        const { id, changePriority } = this.props;
-
-        changePriority(id);
     };
 
     render () {
@@ -36,7 +30,7 @@ export default class Task extends Component {
                         checked = { completed }
                         color1 = '#3B8EF3'
                         color2 = '#FFF'
-                        onClick = { this.complete }
+                        onClick = { this.toggleComplete }
                     />
                     <code>{message}</code>
                 </div>
@@ -45,7 +39,7 @@ export default class Task extends Component {
                         checked = { important }
                         color1 = '#3B8EF3'
                         color2 = '#000'
-                        onClick = { this.changePriority }
+                        onClick = { null }
                     />
                     <Edit color1 = '#3B8EF3' color2 = '#000' />
                     <Delete color1 = '#3B8EF3' color2 = '#000' />
