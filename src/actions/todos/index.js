@@ -2,6 +2,11 @@
 import types from './types';
 
 export default Object.freeze({
+    addTodo: (newTodo) => ({
+        type:    types.ADD_TODO,
+        payload: newTodo,
+    }),
+
     deleteTodo: (id) => ({
         type:    types.DELETE_TODO,
         payload: id,

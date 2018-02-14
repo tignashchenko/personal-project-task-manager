@@ -1,4 +1,5 @@
 export default Object.freeze({
+    ADD_TODO:                  'ADD_TODO',
     DELETE_TODO:               'DELETE_TODO',
     TOGGLE_COMPLETE_ALL_TODOS: 'TOGGLE_COMPLETE_ALL_TODOS',
     TOGGLE_TODO_PRIORITY:      'TOGGLE_TODO_PRIORITY',

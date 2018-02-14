@@ -12,6 +12,29 @@ import todoActions from 'actions/todos';
 import Task from 'components/Task';
 
 class Scheduler extends Component {
+    createTodo = (event) => {
+        const { actions } = this.props;
+
+        event.preventDefault();
+
+        const todoMessage = document.getElementById('todo-create-field').value;
+
+        if (todoMessage.length > 46) {
+            alert('Your input is too long!'); //eslint-disable-line
+
+            document.getElementById('todo-create-field').value = '';
+
+            return;
+        } else if (!todoMessage.length) {
+            alert('Please enter a valid input!'); //eslint-disable-line
+
+            return;
+        }
+        actions.addTodo(todoMessage);
+
+        document.getElementById('todo-create-field').value = '';
+    };
+
     render () {
         const { actions, todos } = this.props;
         const allCompleted = todos.every((todo) => todo.completed);
@@ -36,8 +59,8 @@ class Scheduler extends Component {
                         <input placeholder = 'Поиск' type = 'search' />
                     </header>
                     <section>
-                        <form onSubmit = { this.handleSubmit }>
-                            <input placeholder = 'Описание моей новой задачи' type = 'text' />
+                        <form onSubmit = { this.createTodo }>
+                            <input id = 'todo-create-field' placeholder = 'Описание моей новой задачи' type = 'text' />
                             <button>Добавить задачу</button>
                         </form>
                         <ul>{todoList}</ul>
