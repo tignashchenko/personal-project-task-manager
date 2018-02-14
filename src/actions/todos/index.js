@@ -6,4 +6,9 @@ export default Object.freeze({
         type:    types.TOGGLE_COMPLETE_TODO,
         payload: id,
     }),
+
+    toggleTodoPriority: (id) => ({
+        type:    types.TOGGLE_TODO_PRIORITY,
+        payload: id,
+    }),
 });

@@ -16,6 +16,12 @@ export default class Task extends Component {
         complete(id);
     };
 
+    togglePriority = () => {
+        const { changePriority, id } = this.props;
+
+        changePriority(id);
+    };
+
     render () {
         const { completed, important, message } = this.props;
 
@@ -39,7 +45,7 @@ export default class Task extends Component {
                         checked = { important }
                         color1 = '#3B8EF3'
                         color2 = '#000'
-                        onClick = { null }
+                        onClick = { this.togglePriority }
                     />
                     <Edit color1 = '#3B8EF3' color2 = '#000' />
                     <Delete color1 = '#3B8EF3' color2 = '#000' />

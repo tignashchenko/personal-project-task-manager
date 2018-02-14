@@ -17,7 +17,7 @@ class Scheduler extends Component {
 
         const todoList = todos.map(({ id, message, completed, important }) => (
             <Task
-                changePriority = { null }
+                changePriority = { actions.toggleTodoPriority }
                 complete = { actions.toggleCompleteTodo }
                 completed = { completed }
                 id = { id }
