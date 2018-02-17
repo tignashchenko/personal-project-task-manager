@@ -44,10 +44,12 @@ class Scheduler extends Component {
                 complete = { actions.toggleCompleteTodo }
                 completed = { completed }
                 deleteTodo = { actions.deleteTodo }
+                editable = { false }
                 id = { id }
                 important = { important }
                 key = { id }
                 message = { message }
+                updateTodo = { actions.updateTodo }
             />
         ));
 

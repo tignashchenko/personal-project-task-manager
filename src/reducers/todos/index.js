@@ -30,6 +30,9 @@ export default (state = [], { payload, type }) => {
             return [...priorityTodos.reverse(), ...nonPriorityTodos];
         }
 
+        case types.UPDATE_TODO:
+            return state.map((todo) => todo.id === payload.id ? { ...todo, message: payload.message } : todo);
+
         default:
             return state;
     }

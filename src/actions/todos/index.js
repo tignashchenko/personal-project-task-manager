@@ -25,4 +25,12 @@ export default Object.freeze({
         type:    types.TOGGLE_TODO_PRIORITY,
         payload: id,
     }),
+
+    updateTodo: (id, message) => ({
+        type:    types.UPDATE_TODO,
+        payload: {
+            id,
+            message,
+        },
+    }),
 });
