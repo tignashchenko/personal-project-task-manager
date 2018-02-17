@@ -1,9 +1,9 @@
 // Instruments
-import { todos } from 'components/Scheduler/todos';
+//import { todos } from 'components/Scheduler/todos';
 import types from 'actions/todos/types';
 import { v4 } from 'uuid';
 
-export default (state = todos, { payload, type }) => {
+export default (state = [], { payload, type }) => {
     switch (type) {
         case types.ADD_TODO:
             return [{
