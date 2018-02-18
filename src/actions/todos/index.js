@@ -23,6 +23,17 @@ export default Object.freeze({
         payload: id,
     }),
 
+    deleteTodoFailure: (error) => ({
+        type:    types.DELETE_TODO_FAILURE,
+        payload: error,
+        error:   true,
+    }),
+
+    deleteTodoSuccess: (id) => ({
+        type:    types.DELETE_TODO_SUCCESS,
+        payload: id,
+    }),
+
     fetchTodos: () => ({
         type: types.FETCH_TODOS,
     }),

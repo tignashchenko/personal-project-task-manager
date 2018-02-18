@@ -6,7 +6,7 @@ export default (state = [], { payload, type }) => {
         case types.ADD_TODO_SUCCESS:
             return [payload, ...state];
 
-        case types.DELETE_TODO:
+        case types.DELETE_TODO_SUCCESS:
             return state.filter((todo) => todo.id !== payload);
 
         case types.FETCH_TODOS_SUCCESS:
