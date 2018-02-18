@@ -2,8 +2,19 @@
 import types from './types';
 
 export default Object.freeze({
-    addTodo: (newTodo) => ({
+    addTodo: (comment) => ({
         type:    types.ADD_TODO,
+        payload: comment,
+    }),
+
+    addTodoFailure: (error) => ({
+        type:    types.ADD_TODO_FAILURE,
+        payload: error,
+        error:   true,
+    }),
+
+    addTodoSuccess: (newTodo) => ({
+        type:    types.ADD_TODO_SUCCESS,
         payload: newTodo,
     }),
 

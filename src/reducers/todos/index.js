@@ -1,17 +1,10 @@
 // Instruments
-//import { todos } from 'components/Scheduler/todos';
 import types from 'actions/todos/types';
-import { v4 } from 'uuid';
 
 export default (state = [], { payload, type }) => {
     switch (type) {
-        case types.ADD_TODO:
-            return [{
-                id:        v4(),
-                message:   payload,
-                completed: false,
-                important: false,
-            }, ...state];
+        case types.ADD_TODO_SUCCESS:
+            return [payload, ...state];
 
         case types.DELETE_TODO:
             return state.filter((todo) => todo.id !== payload);
