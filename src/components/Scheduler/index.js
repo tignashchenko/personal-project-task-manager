@@ -17,7 +17,7 @@ class Scheduler extends Component {
 
         actions.fetchTodos();
 
-        this.refetch = setInterval(actions.fetchTodos, 10000);
+        this.refetch = setInterval(actions.fetchTodos, 30000);
     }
 
     componentWillUnmount () {

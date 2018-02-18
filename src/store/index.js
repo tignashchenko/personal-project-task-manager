@@ -1,5 +1,6 @@
 //  Core
 import { applyMiddleware, createStore, compose } from 'redux';
+import { createLogger } from 'redux-logger';
 import createSagaMiddleware from 'redux-saga';
 
 // Instruments
@@ -12,6 +13,23 @@ const composeEnhancers = dev && devtools ? devtools : compose;
 
 const sagaMiddleware = createSagaMiddleware();
 const middleware = [sagaMiddleware];
+
+const logger = createLogger({
+    duration:  true,
+    collapsed: true,
+    diff:      true,
+    colors:    {
+        title:     () => '#139BFE',
+        prevState: () => '#1C5FAF',
+        action:    () => '#149945',
+        nextState: () => '#A47104',
+        error:     () => '#ff0005',
+    },
+});
+
+if (dev) {
+    middleware.push(logger);
+}
 
 const persistedState = JSON.parse(localStorage.getItem('todos'));
 
