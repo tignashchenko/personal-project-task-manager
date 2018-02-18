@@ -12,6 +12,21 @@ export default Object.freeze({
         payload: id,
     }),
 
+    fetchTodos: () => ({
+        type: types.FETCH_TODOS,
+    }),
+
+    fetchTodosFailure: (error) => ({
+        type:    types.FETCH_TODOS_FAILURE,
+        payload: error,
+        error:   true,
+    }),
+
+    fetchTodosSuccess: (todos) => ({
+        type:    types.FETCH_TODOS_SUCCESS,
+        payload: todos,
+    }),
+
     toggleCompleteAllTodos: () => ({
         type: types.TOGGLE_COMPLETE_ALL_TODOS,
     }),

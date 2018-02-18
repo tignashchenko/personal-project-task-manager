@@ -1,16 +1,20 @@
 //  Core
-import { compose, createStore } from 'redux';
+import { applyMiddleware, createStore, compose } from 'redux';
+import createSagaMiddleware from 'redux-saga';
 
 // Instruments
 import reducer from 'reducers';
-import todos from 'components/Scheduler/todos';
+import { saga } from 'sagas';
 
 const dev = process.env.NODE_ENV === 'development'; // eslint-disable-line
 const devtools = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__;
 const composeEnhancers = dev && devtools ? devtools : compose;
 
-localStorage.setItem('todos', JSON.stringify(todos));
+const sagaMiddleware = createSagaMiddleware();
+const middleware = [sagaMiddleware];
 
 const persistedState = JSON.parse(localStorage.getItem('todos'));
 
-export default createStore(reducer, persistedState, composeEnhancers());
+export default createStore(reducer, persistedState, composeEnhancers(applyMiddleware(...middleware)));
+
+sagaMiddleware.run(saga);

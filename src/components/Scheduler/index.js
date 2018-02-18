@@ -12,6 +12,18 @@ import todoActions from 'actions/todos';
 import Task from 'components/Task';
 
 class Scheduler extends Component {
+    componentDidMount () {
+        const { actions } = this.props;
+
+        actions.fetchTodos();
+
+        this.refetch = setInterval(actions.fetchTodos, 10000);
+    }
+
+    componentWillUnmount () {
+        clearInterval(this.refetch);
+    }
+
     createTodo = (event) => {
         const { actions } = this.props;
 
