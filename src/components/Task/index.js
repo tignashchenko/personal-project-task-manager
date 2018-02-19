@@ -17,7 +17,7 @@ export default class Task extends Component {
     };
 
     handleInput = (event) => {
-        const { id } = this.props;
+        const { id, completed, favorite } = this.props;
 
         const escape = event.which === 27;
         const enter = event.which === 13;
@@ -33,7 +33,7 @@ export default class Task extends Component {
                 element.blur();
             } else if (enter) {
                 message[document.getElementById(id)] = element.innerHTML;
-                this.updateTodo(id, Object.values(message)[0]);
+                this.updateTodo(id, Object.values(message)[0], favorite, completed);
                 event.preventDefault();
                 document.getElementById(id).contentEditable = 'false';
                 element.blur();
@@ -42,9 +42,14 @@ export default class Task extends Component {
     };
 
     toggleComplete = () => {
-        const { complete, id } = this.props;
+        const { complete, completed, id, favorite, message } = this.props;
 
-        complete(id);
+        complete({
+            id,
+            message,
+            completed,
+            favorite,
+        });
     };
 
     toggleEditable = () => {
@@ -56,19 +61,24 @@ export default class Task extends Component {
     };
 
     togglePriority = () => {
-        const { changePriority, id } = this.props;
+        const { changePriority, completed, id, favorite, message } = this.props;
 
-        changePriority(id);
+        changePriority({
+            id,
+            message,
+            completed,
+            favorite,
+        });
     };
 
-    updateTodo = (id, message) => {
+    updateTodo = (id, message, favorite, completed) => {
         const { updateTodo } = this.props;
 
-        updateTodo(id, message);
+        updateTodo(id, message, favorite, completed);
     };
 
     render () {
-        const { completed, editable, id, important, message } = this.props;
+        const { completed, editable, id, favorite, message } = this.props;
 
         const styles = cx(Styles.task, {
             [Styles.completed]: completed,
@@ -87,7 +97,7 @@ export default class Task extends Component {
                 </div>
                 <div>
                     <Star
-                        checked = { important }
+                        checked = { favorite }
                         color1 = '#3B8EF3'
                         color2 = '#000'
                         onClick = { this.togglePriority }

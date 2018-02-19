@@ -50,15 +50,15 @@ class Scheduler extends Component {
     render () {
         const { actions, todos } = this.props;
         const allCompleted = todos.every((todo) => todo.completed);
-        const todoList = todos.map(({ id, message, completed, important }) => (
+        const todoList = todos.map(({ id, message, completed, favorite }) => (
             <Task
                 changePriority = { actions.toggleTodoPriority }
                 complete = { actions.toggleCompleteTodo }
                 completed = { completed }
                 deleteTodo = { actions.deleteTodo }
                 editable = { false }
+                favorite = { favorite }
                 id = { id }
-                important = { important }
                 key = { id }
                 message = { message }
                 updateTodo = { actions.updateTodo }

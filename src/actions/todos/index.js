@@ -53,21 +53,67 @@ export default Object.freeze({
         type: types.TOGGLE_COMPLETE_ALL_TODOS,
     }),
 
-    toggleCompleteTodo: (id) => ({
+    toggleCompleteAllTodosFailure: (error) => ({
+        type:    types.TOGGLE_COMPLETE_ALL_TODOS_FAILURE,
+        payload: error,
+        error:   true,
+    }),
+
+    toggleCompleteAllTodosSuccess: (todos) => ({
+        type:    types.TOGGLE_COMPLETE_ALL_TODOS_SUCCESS,
+        payload: todos,
+    }),
+
+    toggleCompleteTodo: (todo) => ({
         type:    types.TOGGLE_COMPLETE_TODO,
+        payload: todo,
+    }),
+
+    toggleCompleteTodoFailure: (error) => ({
+        type:    types.TOGGLE_COMPLETE_TODO_FAILURE,
+        payload: error,
+        error:   true,
+    }),
+
+    toggleCompleteTodoSuccess: (id) => ({
+        type:    types.TOGGLE_COMPLETE_TODO_SUCCESS,
         payload: id,
     }),
 
-    toggleTodoPriority: (id) => ({
+    toggleTodoPriority: (todo) => ({
         type:    types.TOGGLE_TODO_PRIORITY,
+        payload: todo,
+    }),
+
+    toggleTodoPriorityFailure: (error) => ({
+        type:    types.TOGGLE_TODO_PRIORITY_FAILURE,
+        payload: error,
+        error:   true,
+    }),
+
+    toggleTodoPrioritySuccess: (id) => ({
+        type:    types.TOGGLE_TODO_PRIORITY_SUCCESS,
         payload: id,
     }),
 
-    updateTodo: (id, message) => ({
+    updateTodo: (id, message, favorite, completed) => ({
         type:    types.UPDATE_TODO,
         payload: {
             id,
+            completed,
+            favorite,
             message,
         },
+    }),
+
+    updateTodoFailure: (error) => ({
+        type:    types.UPDATE_TODO_FAILURE,
+        payload: error,
+        error:   true,
+    }),
+
+    updateTodoSuccess: (todo) => ({
+        type:    types.UPDATE_TODO_SUCCESS,
+        payload: todo,
     }),
 });

@@ -15,19 +15,19 @@ export default (state = [], { payload, type }) => {
         case types.TOGGLE_COMPLETE_ALL_TODOS:
             return state.map((todo) => ({ ...todo, completed: !todo.completed }));
 
-        case types.TOGGLE_COMPLETE_TODO:
-            return state.map((todo) => todo.id === payload ? { ...todo, completed: !todo.completed } : todo);
+        case types.TOGGLE_COMPLETE_TODO_SUCCESS:
+            return state.map((todo) => todo.id === payload.id ? { ...todo, completed: !todo.completed } : todo);
 
-        case types.TOGGLE_TODO_PRIORITY: {
-            const modifiedPriorityTodos = state.map((todo) => todo.id === payload ? { ...todo, important: !todo.important } : todo);
-            const priorityTodos = modifiedPriorityTodos.filter((todo) => todo.important);
-            const nonPriorityTodos = modifiedPriorityTodos.filter((todo) => !todo.important);
+        case types.TOGGLE_TODO_PRIORITY_SUCCESS: {
+            const modifiedPriorityTodos = state.map((todo) => todo.id === payload.id ? { ...todo, favorite: !todo.favorite } : todo);
+            const priorityTodos = modifiedPriorityTodos.filter((todo) => todo.favorite);
+            const nonPriorityTodos = modifiedPriorityTodos.filter((todo) => !todo.favorite);
 
             return [...priorityTodos.reverse(), ...nonPriorityTodos];
         }
 
-        case types.UPDATE_TODO:
-            return state.map((todo) => todo.id === payload.id ? { ...todo, message: payload.message } : todo);
+        case types.UPDATE_TODO_SUCCESS:
+            return state.map((todo) => todo.id === payload[0].id ? { ...todo, message: payload[0].message } : todo);
 
         default:
             return state;

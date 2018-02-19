@@ -7,7 +7,10 @@ import todos from './todos';
 export function* saga () {
     yield all([
         todos.addTodoWatcher(),
+        todos.completeTodoWatcher(),
         todos.deleteTodoWatcher(),
-        todos.fetchTodosWatcher()
+        todos.fetchTodosWatcher(),
+        todos.toggleTodoPriorityWatcher(),
+        todos.updateTodoWatcher()
     ]);
 }
