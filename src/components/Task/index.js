@@ -32,7 +32,7 @@ export default class Task extends Component {
                 document.getElementById(id).contentEditable = 'false';
                 element.blur();
             } else if (enter) {
-                message[document.getElementById(id)] = element.innerHTML;
+                message[document.getElementById(id)] = element.innerText;
                 this.updateTodo(id, Object.values(message)[0], favorite, completed);
                 event.preventDefault();
                 document.getElementById(id).contentEditable = 'false';

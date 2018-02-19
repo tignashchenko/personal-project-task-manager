@@ -4,6 +4,7 @@ import { takeEvery } from 'redux-saga/effects';
 // Instruments
 import types from 'actions/todos/types';
 import { addTodoWorker } from './workers/addTodo';
+import { completeAllTodosWorker } from './workers/completeAllTodos';
 import { completeTodoWorker } from './workers/completeTodo';
 import { deleteTodoWorker } from './workers/deleteTodo';
 import { fetchTodosWorker } from './workers/fetchTodos';
@@ -13,6 +14,10 @@ import { updateTodoWorker } from './workers/updateTodo';
 export default Object.freeze({
     * addTodoWatcher () {
         yield takeEvery(types.ADD_TODO, addTodoWorker);
+    },
+
+    * completeAllTodosWatcher () {
+        yield takeEvery(types.TOGGLE_COMPLETE_ALL_TODOS, completeAllTodosWorker);
     },
 
     * completeTodoWatcher () {

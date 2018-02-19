@@ -7,18 +7,14 @@ import { api, token } from 'instruments/api';
 
 export function* updateTodoWorker ({ payload }) {
     try {
+        console.log('payload', payload);
         const response = yield call(fetch, api, {
             method:  'PUT',
             headers: {
                 Authorization:  token,
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify([{
-                id:        payload.id,
-                completed: payload.completed,
-                message:   payload.message,
-                favorite:  payload.favorite,
-            }]),
+            body: JSON.stringify([payload]),
         });
 
         const { data, message: errorMessage } = yield call([response, response.json]);
