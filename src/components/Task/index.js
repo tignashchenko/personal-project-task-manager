@@ -19,6 +19,8 @@ export default class Task extends Component {
     handleInput = (event) => {
         const { id, completed, favorite } = this.props;
 
+        console.log('event', event.target.innerText);
+
         const escape = event.which === 27;
         const enter = event.which === 13;
         const element = event.target;

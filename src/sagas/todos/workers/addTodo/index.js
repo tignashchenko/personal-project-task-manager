@@ -1,5 +1,6 @@
 // Core
 import { call, put } from 'redux-saga/effects';
+import { actions } from 'react-redux-form';
 
 // Instruments
 import todoActions from 'actions/todos';
@@ -25,6 +26,7 @@ export function* addTodoWorker ({ payload: comment }) {
         }
 
         yield put(todoActions.addTodoSuccess(data));
+        yield put(actions.reset('forms.addTodo.message'));
     } catch (error) {
         yield put(todoActions.addTodoFailure(error.message));
     } finally {
