@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { Control, Form } from 'react-redux-form';
+import { Control, Errors, Form } from 'react-redux-form';
 
 // Instruments
 import Styles from './styles';
@@ -27,22 +27,6 @@ class Scheduler extends Component {
     createTodo = ({ message }) => {
         const { actions } = this.props;
 
-        //
-        // event.preventDefault();
-        //
-        // const todoMessage = document.getElementById('todo-create-field').value;
-        //
-        // if (todoMessage.length > 46) {
-        //     alert('Your input is too long!'); //eslint-disable-line
-        //
-        //     document.getElementById('todo-create-field').value = '';
-        //
-        //     return;
-        // } else if (!todoMessage.length) {
-        //     alert('Please enter a valid input!'); //eslint-disable-line
-        //
-        //     return;
-        // }
         actions.addTodo(message);
     };
 
@@ -72,10 +56,26 @@ class Scheduler extends Component {
                         <input placeholder = 'Поиск' type = 'search' />
                     </header>
                     <section>
+                        <Errors
+                            messages = { {
+                                required: 'This field cannot contain an empty string.',
+                                length:   'This field cannot exceed 46 characters.',
+                            } }
+                            model = 'forms.addTodo.message'
+                            show = { (field) => field.focus }
+                        />
                         <Form
                             model = 'forms.addTodo'
                             onSubmit = { this.createTodo } >
-                            <Control.text id = 'forms.addTodo.message' model = 'forms.addTodo.message' placeholder = 'Описание моей новой задачи' />
+                            <Control.text
+                                id = 'forms.addTodo.message'
+                                model = 'forms.addTodo.message'
+                                placeholder = 'Описание моей новой задачи'
+                                validators = { {
+                                    required: (val) => val.length,
+                                    length:   (val) => val.length <= 46,
+                                } }
+                            />
                             <button type = 'submit'>
                                 Добавить задачу
                             </button>
