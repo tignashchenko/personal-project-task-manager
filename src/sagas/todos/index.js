@@ -8,6 +8,7 @@ import { completeAllTodosWorker } from './workers/completeAllTodos';
 import { completeTodoWorker } from './workers/completeTodo';
 import { deleteTodoWorker } from './workers/deleteTodo';
 import { fetchTodosWorker } from './workers/fetchTodos';
+import { findTodoWorker } from './workers/findTodo';
 import { toggleTodoPriorityWorker } from './workers/toggleTodoPriority';
 import { updateTodoWorker } from './workers/updateTodo';
 
@@ -30,6 +31,10 @@ export default Object.freeze({
 
     * fetchTodosWatcher () {
         yield takeEvery(types.FETCH_TODOS, fetchTodosWorker);
+    },
+
+    * findTodoWatcher () {
+        yield takeEvery(types.FIND_TODO, findTodoWorker);
     },
 
     * toggleTodoPriorityWatcher () {

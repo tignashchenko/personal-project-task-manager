@@ -30,6 +30,12 @@ class Scheduler extends Component {
         actions.addTodo(message);
     };
 
+    findTodo = (event) => {
+        const { actions } = this.props;
+
+        event.target.value ? actions.findTodo(event.target.value) : actions.fetchTodos();
+    }
+
     render () {
         const { actions, todos } = this.props;
         const allCompleted = todos.every((todo) => todo.completed);
@@ -53,7 +59,7 @@ class Scheduler extends Component {
                 <main>
                     <header>
                         <h1>Планировщик задач</h1>
-                        <input placeholder = 'Поиск' type = 'search' />
+                        <input placeholder = 'Поиск' type = 'search' onChange = { this.findTodo } />
                     </header>
                     <section>
                         <Errors

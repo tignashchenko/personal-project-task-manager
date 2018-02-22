@@ -10,6 +10,7 @@ export function* saga () {
         todos.completeAllTodosWatcher(),
         todos.completeTodoWatcher(),
         todos.deleteTodoWatcher(),
+        todos.findTodoWatcher(),
         todos.fetchTodosWatcher(),
         todos.toggleTodoPriorityWatcher(),
         todos.updateTodoWatcher()

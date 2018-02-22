@@ -49,6 +49,22 @@ export default Object.freeze({
         payload: todos,
     }),
 
+    findTodo: (searchTerm) => ({
+        type:    types.FIND_TODO,
+        payload: searchTerm,
+    }),
+
+    findTodoSuccess: (todo) => ({
+        type:    types.FIND_TODO_SUCCESS,
+        payload: todo,
+    }),
+
+    findTodoFailure: (error) => ({
+        type:    types.FIND_TODO_FAILURE,
+        payload: error,
+        error:   true,
+    }),
+
     toggleCompleteAllTodos: () => ({
         type: types.TOGGLE_COMPLETE_ALL_TODOS,
     }),

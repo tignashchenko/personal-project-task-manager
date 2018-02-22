@@ -10,6 +10,7 @@ export default (state = [], { payload, type }) => {
             return state.filter((todo) => todo.id !== payload);
 
         case types.FETCH_TODOS_SUCCESS:
+        case types.FIND_TODO_SUCCESS:
             return [...payload];
 
         case types.TOGGLE_COMPLETE_ALL_TODOS:
