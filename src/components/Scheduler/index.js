@@ -30,10 +30,10 @@ class Scheduler extends Component {
         actions.addTodo(message);
     };
 
-    findTodo = (event) => {
+    findTodo = ({ message }) => {
         const { actions } = this.props;
 
-        event.target.value ? actions.findTodo(event.target.value) : actions.fetchTodos();
+        message ? actions.findTodo(message) : actions.fetchTodos();
     }
 
     render () {
@@ -59,7 +59,15 @@ class Scheduler extends Component {
                 <main>
                     <header>
                         <h1>Планировщик задач</h1>
-                        <input placeholder = 'Поиск' type = 'search' onChange = { this.findTodo } />
+                        <Form
+                            model = 'forms.findTodo'
+                            onChange = { this.findTodo } >
+                            <Control.text
+                                id = 'forms.findTodo.message'
+                                model = 'forms.findTodo.message'
+                                placeholder = 'Поиск'
+                            />
+                        </Form>
                     </header>
                     <section>
                         <Errors

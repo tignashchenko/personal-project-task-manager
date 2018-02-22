@@ -8,6 +8,9 @@ export default combineForms(
         editTodo: {
             message: '',
         },
+        findTodo: {
+            message: '',
+        },
     },
     'forms',
 );
